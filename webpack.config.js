@@ -20,7 +20,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "My App",
+      template: "./#src/index.html",
     }),
     new CleanWebpackPlugin(),
     // применять изменения только при горячей перезагрузке
@@ -42,8 +42,11 @@ module.exports = {
       },
       // images
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: "asset/resource",
+        test: /\.(gif|png|jpg|jpeg|svg)?$/,
+        loader: 'file-loader',
+        options: {
+          name: 'images/[name].[ext]',
+        },
       },
       // fonts & SVG
       {
